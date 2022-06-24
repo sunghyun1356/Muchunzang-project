@@ -1,0 +1,28 @@
+#qna{
+    display:none;
+}
+.qBox{
+    background-color: whitesmoke;
+    text-align:center;
+    border-radius:20px;
+    font-size:24px;
+    width:80%;
+}
+
+.answerList{
+    background-color: whitesmoke;
+    text-align:center;
+    border-radius:20px;
+    font-size:20px;
+    display: block;
+    width:100%;
+    border:0px;
+    font-size:20px;
+    width:80%;
+}
+
+.answerList:hover,.answerList:focus{
+    background-color:gray;
+    color:whitesmoke;
+
+}
