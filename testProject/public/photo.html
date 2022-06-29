@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.8.4/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.8.4/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.8.4/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    
+  </head>
+  <body>
+    <div id="filesubmit">
+        <input type="file" class="file-select" accept="image/*"/>
+        <button class="file-submit">사진 등록</button>
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-outline-secondary" onClick="location.href='../index.html'">돌아가기</button>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const storageRef = firebase.storage().ref();
+        let selectedFile;
+    
+        // File 선택
+        document.querySelector('.file-select').addEventListener('change', e => {
+            selectedFile = e.target.files[0];
+        });
+    
+        // File 업로드
+        document.querySelector('.file-submit').addEventListener('click', () => {
+            storageRef
+                    .child(`images/${selectedFile.name}`)
+                    .put(selectedFile)
+                    .on('state_changed', snapshot => {
+                                                console.log(snapshot)
+                                            }, error => {
+                                                console.log(error);
+                                            }, () => {
+                                                console.log('성공');
+                                            }
+                    );
+        });
+    });
+
+    
+
+    </script>
+  </body>
+  
+</html>
